@@ -32,8 +32,6 @@ Gem::Specification.new do |s|
     "lib/acts_as_markup/exts/peg_markdown.rb",
     "lib/acts_as_markup/exts/rdiscount.rb",
     "lib/acts_as_markup/exts/rdoc.rb",
-    "lib/acts_as_markup/exts/redcarpet.rb",
-    "lib/acts_as_markup/exts/wikicloth.rb",
     "lib/acts_as_markup/exts/wikitext.rb",
     "lib/acts_as_markup/railtie.rb",
     "lib/acts_as_markup/stringlike.rb",
@@ -60,7 +58,6 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<activesupport>, [">= 0"])
       s.add_runtime_dependency(%q<activerecord>, [">= 0"])
       s.add_runtime_dependency(%q<rdiscount>, [">= 0"])
-      s.add_runtime_dependency(%q<wikicloth>, [">= 0"])
       s.add_runtime_dependency(%q<RedCloth>, [">= 0"])
       s.add_development_dependency(%q<shoulda>, [">= 0"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
@@ -74,7 +71,6 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<bluecloth>, [">= 0"])
       s.add_development_dependency(%q<maruku>, [">= 0"])
       s.add_development_dependency(%q<wikitext>, [">= 0"])
-      s.add_development_dependency(%q<redcarpet>, [">= 0"])
       s.add_runtime_dependency(%q<activesupport>, [">= 2.3.2"])
       s.add_runtime_dependency(%q<activerecord>, [">= 2.3.2"])
       s.add_runtime_dependency(%q<rdiscount>, ["~> 1.3"])
@@ -84,7 +80,6 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<activesupport>, [">= 0"])
       s.add_dependency(%q<activerecord>, [">= 0"])
       s.add_dependency(%q<rdiscount>, [">= 0"])
-      s.add_dependency(%q<wikicloth>, [">= 0"])
       s.add_dependency(%q<RedCloth>, [">= 0"])
       s.add_dependency(%q<shoulda>, [">= 0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
@@ -98,7 +93,6 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<bluecloth>, [">= 0"])
       s.add_dependency(%q<maruku>, [">= 0"])
       s.add_dependency(%q<wikitext>, [">= 0"])
-      s.add_dependency(%q<redcarpet>, [">= 0"])
       s.add_dependency(%q<activesupport>, [">= 2.3.2"])
       s.add_dependency(%q<activerecord>, [">= 2.3.2"])
       s.add_dependency(%q<rdiscount>, ["~> 1.3"])
@@ -109,7 +103,6 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<activesupport>, [">= 0"])
     s.add_dependency(%q<activerecord>, [">= 0"])
     s.add_dependency(%q<rdiscount>, [">= 0"])
-    s.add_dependency(%q<wikicloth>, [">= 0"])
     s.add_dependency(%q<RedCloth>, [">= 0"])
     s.add_dependency(%q<shoulda>, [">= 0"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
@@ -123,7 +116,6 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<bluecloth>, [">= 0"])
     s.add_dependency(%q<maruku>, [">= 0"])
     s.add_dependency(%q<wikitext>, [">= 0"])
-    s.add_dependency(%q<redcarpet>, [">= 0"])
     s.add_dependency(%q<activesupport>, [">= 2.3.2"])
     s.add_dependency(%q<activerecord>, [">= 2.3.2"])
     s.add_dependency(%q<rdiscount>, ["~> 1.3"])

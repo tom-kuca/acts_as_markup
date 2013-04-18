@@ -20,7 +20,7 @@ module ActsAsMarkup
     
     config.before_configuration do
       config.acts_as_markup['markdown_library'] ||= :rdiscount
-      config.acts_as_markup['mediawiki_library'] ||= :wikicloth
+      config.acts_as_markup['mediawiki_library'] ||= :wikitext
     end
   end
 end

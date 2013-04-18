@@ -77,7 +77,7 @@ class ActsAsMarkupTest < ActsAsMarkupTestCase
   context 'acts_as_markup with variable language' do
     setup do
       ActsAsMarkup.markdown_library = :rdiscount
-      ActsAsMarkup.mediawiki_library = :wikicloth
+      ActsAsMarkup.mediawiki_library = :wikitext
       class ::VariablePost < ActiveRecord::Base
         acts_as_markup :language => :variable, :columns => [:body]
       end
@@ -183,10 +183,6 @@ class ActsAsMarkupTest < ActsAsMarkupTestCase
         @wikitext_post = VariablePost.create!(:title => 'Blah', :body => @wikitext, :markup_language => 'Mediawiki')
       end
 
-      should "have a WikitextString object returned for the column value" do
-        assert_kind_of WikiClothText, @wikitext_post.body
-      end
-
       should "return original wikitext text for a `to_s` method call on the column value" do
         assert_equal @wikitext, @wikitext_post.body.to_s
       end
@@ -201,17 +197,12 @@ class ActsAsMarkupTest < ActsAsMarkupTestCase
           @wikitext_post.body = "'''This is very important'''"
         end
 
-        should "still have an WikitextString object but not the same object" do
-          assert_kind_of WikiClothText, @wikitext_post.body
-          assert_not_same @wikitext_post.body, @old_body 
-        end
-
         should "return correct text for `to_s`" do
           assert_equal "'''This is very important'''", @wikitext_post.body.to_s
         end
 
         should "return correct HTML for the `to_html` method" do
-          assert_match(/<p><b>This is very important<\/b><\/p>/, @wikitext_post.body.to_html)
+          assert_match(/<p><strong>This is very important<\/strong><\/p>/, @wikitext_post.body.to_html)
         end
 
         teardown do
@@ -327,7 +318,7 @@ class ActsAsMarkupTest < ActsAsMarkupTestCase
   context 'acts_as_markup with variable language setting the language column' do
     setup do
       ActsAsMarkup.markdown_library = :rdiscount
-      ActsAsMarkup.mediawiki_library = :wikicloth
+      ActsAsMarkup.mediawiki_library = :wikitext
       class ::VariableLanguagePost < ActiveRecord::Base
         acts_as_markup :language => :variable, :columns => [:body], :language_column => :language_name
       end
@@ -374,37 +365,6 @@ class ActsAsMarkupTest < ActsAsMarkupTestCase
       
       should "have a RedCloth object returned for the column value" do
         assert_kind_of RedCloth::TextileDoc, @post.body
-      end
-      
-      teardown do
-        @post = nil
-        Post.delete_all
-      end
-    end
-    
-    context 'with WikiCloth mediawiki' do
-      setup do
-        ActsAsMarkup.mediawiki_library = :wikicloth
-        class ::Post < ActiveRecord::Base
-          acts_as_mediawiki :body
-        end
-        @post = Post.create!(:title => 'Blah', :body => @text)
-      end
-      
-      should 'return a blank string for `to_s` method' do
-        assert_equal @post.body.to_s, ''
-      end
-      
-      should 'return true for .blank?' do
-        assert @post.body.blank?
-      end
-      
-      should 'return a blank string for `to_html` method' do
-        assert_match(/[\n\s]*/, @post.body.to_html)
-      end
-      
-      should "have a WikitextString object returned for the column value" do
-        assert_kind_of WikiClothText, @post.body
       end
       
       teardown do
@@ -598,36 +558,6 @@ class ActsAsMarkupTest < ActsAsMarkupTestCase
       end
     end
     
-    context 'with Redcarpet Markdown' do
-      setup do
-        ActsAsMarkup.markdown_library = :redcarpet
-        class ::Post < ActiveRecord::Base
-          acts_as_markdown :body
-        end
-        @post = Post.create!(:title => 'Blah', :body => @text)
-      end
-      
-      should 'return a blank string for `to_s` method' do
-        assert_equal @post.body.to_s, ''
-      end
-      
-      should 'return true for .blank?' do
-        assert @post.body.blank?
-      end
-      
-      should 'return a blank string for `to_html` method' do
-        assert_match(/[\n\s]*/, @post.body.to_html)
-      end
-      
-      should "have a Maruku object returned for the column value" do
-        assert_kind_of Redcarpet, @post.body
-      end
-      
-      teardown do
-        @post = nil
-        Post.delete_all
-      end
-    end
   end
   
   context 'acts_as_markup with bad language name' do
